@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/greeting")
+
 public class GreetingController {
 	private static final String template ="Hello,%s";
 	private final AtomicLong counter = new AtomicLong();
@@ -43,11 +45,9 @@ public class GreetingController {
 		public GreetingController(GreetingService greetingService) {
 	        this.greetingService = greetingService;
 	    }
-		@RequestMapping("/greeting")
-	    @GetMapping("/")
-	    public String getGreeting() {
-	        return greetingService.getGreeting();
+		 @PostMapping("/postUser")
+	    public String getGreeting(@RequestBody User user) {
+	        return greetingService.postGreeting(user);
 	    }
-	
 }
 
